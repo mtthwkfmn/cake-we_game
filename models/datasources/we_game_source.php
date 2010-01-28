@@ -21,7 +21,7 @@ class WeGameSource extends DataSource {
 	 * @access public
 	 * @var string
 	 */
-	public $version = '0.8';
+	public $version = '0.9';
 
 	/**
 	 * The URL for the API.
@@ -89,7 +89,7 @@ class WeGameSource extends DataSource {
 			$url = $query['conditions']['url'];
 			unset($query['conditions']['url']);
 		} else {
-			return null;
+			return 'DATASOURCE_URL';
 		}
 
 		if (isset($query['conditions']['id'])) {
