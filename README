@@ -1,10 +1,38 @@
-WeGame DataSource v0.9 - CakePHP DataSource
+WeGame DataSource v1.0 - CakePHP DataSource
 *******************************************
-
-Still under development.
 
 Requirements
 ============
 
 	* CakePHP 1.2
 	* PHP 5.2.x
+
+Features
+========
+
+	* A DataSource that connects to the WeGame API
+	* A Model defining all the available methods for the API
+	* Query the API and return an array of data
+	* Automatically caches the results to lower the bandwidth between sites
+
+Documentation
+=============
+
+	* http://www.milesj.me/resources/script/wegame-datasource
+
+Installation
+============
+
+	* Place the model and datasource in your Apps respective folders
+	* Add the following config to app/config/database.php
+
+		public $weGame = array(
+			'datasource' => 'we_game',
+			'apiKey' => '<your api key>'
+		);
+
+	* Include the Model and use it:
+
+		public $uses = array('WeGame');
+
+		$results = $this->WeGame->game(array('id' => 'StarCraft'));

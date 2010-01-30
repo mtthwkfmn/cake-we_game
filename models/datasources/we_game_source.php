@@ -11,7 +11,7 @@
  * @link		www.wegame.com, api.wegame.com
  */
 
-App::import('Core', array('HttpSocket', 'Xml'));
+App::import('Core', array('HttpSocket', 'Xml', 'Folder'));
 
 class WeGameSource extends DataSource {
 
@@ -21,7 +21,7 @@ class WeGameSource extends DataSource {
 	 * @access public
 	 * @var string
 	 */
-	public $version = '0.9';
+	public $version = '1.0';
 
 	/**
 	 * The URL for the API.
@@ -41,11 +41,19 @@ class WeGameSource extends DataSource {
 		parent::__construct($config);
 
 		if (Cache::config('weGame') === false) {
+			$cachePath = CACHE .'we_game'. DS;
+
+			// Create the cache dir
+			if (!file_exists($cachePath)) {
+				$this->Folder = new Folder();
+				$this->Folder->create($cachePath, 0777);
+			}
+
 			Cache::config('weGame', array(
 				'engine' 	=> 'File',
 				'serialize' => true,
 				'prefix'	=> '',
-				'path' 		=> CACHE .'we_game'. DS,
+				'path' 		=> $cachePath,
 				'duration'	=> '+1 day'
 			));
 		}
@@ -85,6 +93,7 @@ class WeGameSource extends DataSource {
 		$cacheTime = '+1 day';
 		$cacheKey = md5(serialize($query['conditions']));
 
+		// Get configuration and remove
 		if (isset($query['conditions']['url'])) {
 			$url = $query['conditions']['url'];
 			unset($query['conditions']['url']);
@@ -107,7 +116,9 @@ class WeGameSource extends DataSource {
 		}
 
 		// Find cached first
-		if ($cache === true) {
+		$doCache = ($cache == true && Configure::write('Cache.disable') == false);
+		
+		if ($doCache) {
 			Cache::set(array('duration' => $cacheTime));
 			$results = Cache::read($cacheKey, 'weGame');
 
@@ -123,7 +134,7 @@ class WeGameSource extends DataSource {
 			$xml = new Xml($response);
 			$xml = $xml->toArray();
 
-			if ($cache === true) {
+			if ($doCache) {
 				Cache::set(array('duration' => $cacheTime));
 				Cache::write($cacheKey, $xml, 'weGame');
 			}
