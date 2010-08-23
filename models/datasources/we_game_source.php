@@ -4,11 +4,11 @@
  *
  * A datasource that hooks up to the WeGame API and fetches XML data using an HTTP Request.
  *
- * @author 		Miles Johnson - www.milesj.me
- * @copyright	Copyright 2006-2009, Miles Johnson, Inc.
- * @license 	http://www.opensource.org/licenses/mit-license.php - Licensed under The MIT License
- * @link		www.milesj.me/resources/script/wegame-datasource
- * @link		www.wegame.com, api.wegame.com
+ * @author      Miles Johnson - www.milesj.me
+ * @copyright   Copyright 2006-2010, Miles Johnson, Inc.
+ * @license     http://www.opensource.org/licenses/mit-license.php - Licensed under The MIT License
+ * @link        http://milesj.me/resources/script/wegame-datasource
+ * @link        http://wegame.com, http://api.wegame.com
  */
 
 App::import('Core', array('HttpSocket', 'Xml', 'Folder'));

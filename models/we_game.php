@@ -5,11 +5,11 @@
  * Base model that augments the WeGame datasource and defines all the methods available for the API.
  * Refer to the official API for documented parameters: http://api.wegame.com/docs
  *
- * @author 		Miles Johnson - www.milesj.me
- * @copyright	Copyright 2006-2009, Miles Johnson, Inc.
- * @license 	http://www.opensource.org/licenses/mit-license.php - Licensed under The MIT License
- * @link		www.milesj.me/resources/script/wegame-datasource
- * @link		www.wegame.com, api.wegame.com
+ * @author      Miles Johnson - www.milesj.me
+ * @copyright   Copyright 2006-2010, Miles Johnson, Inc.
+ * @license     http://www.opensource.org/licenses/mit-license.php - Licensed under The MIT License
+ * @link        http://milesj.me/resources/script/wegame-datasource
+ * @link        http://wegame.com, http://api.wegame.com
  */
 
 class WeGame extends AppModel {
